@@ -45,6 +45,10 @@ class MenuPage extends SCoreClasses\SCore\Base\Core
 
             'tabs' => [
                 'default' => sprintf(__('%1$s', 'wp-tocify'), esc_html($this->App->Config->©brand['©name'])),
+                'restore' => [
+                    'label' => __('Restore Default Options', 'wp-tocify'),
+                    'url'   => s::restoreDefaultOptionsUrl(), 'onclick' => 'confirm',
+                ],
             ],
         ]);
     }
