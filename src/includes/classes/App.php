@@ -36,7 +36,7 @@ class App extends SCoreClasses\App
      *
      * @type string Version.
      */
-    const VERSION = '160724.65065'; //v//
+    const VERSION = '160727.5691'; //v//
 
     /**
      * Constructor.
@@ -87,7 +87,7 @@ class App extends SCoreClasses\App
 
                 'custom_styles' => '.wp-tocify-heading {}'."\n".
                                    '.wp-tocify-anchor {}'."\n".
-                                   '.wp-tocify-toc {}',
+                                   '.wp-tocify-toc:not(.-style-none) {}',
 
                 'include_post_types' => [
                     'post',
