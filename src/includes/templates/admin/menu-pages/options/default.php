@@ -1,6 +1,12 @@
 <?php
+/**
+ * Template.
+ *
+ * @author @jaswsinc
+ * @copyright WP Sharks™
+ */
 declare (strict_types = 1);
-namespace WebSharks\WpSharks\WpTocify\Classes\Utils;
+namespace WebSharks\WpSharks\WpTocify;
 
 use WebSharks\WpSharks\WpTocify\Classes;
 use WebSharks\WpSharks\WpTocify\Interfaces;
