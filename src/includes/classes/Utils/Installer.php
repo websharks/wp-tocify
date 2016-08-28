@@ -1,12 +1,12 @@
 <?php
 /**
- * Facades.
+ * Install utils.
  *
  * @author @jaswsinc
  * @copyright WP Sharks™
  */
 declare (strict_types = 1);
-namespace WebSharks\WpSharks\WpTocify\Classes\Base;
+namespace WebSharks\WpSharks\WpTocify\Classes\Utils;
 
 use WebSharks\WpSharks\WpTocify\Classes;
 use WebSharks\WpSharks\WpTocify\Interfaces;
@@ -29,11 +29,23 @@ use function assert as debug;
 use function get_defined_vars as vars;
 
 /**
- * Pseudo-static facades.
+ * Install utils.
  *
- * @since 160718 Initial release.
+ * @since 160828.48363 Initial release.
  */
-abstract class Facades
+class Installer extends SCoreClasses\SCore\Base\Core
 {
-    use Traits\Facades\StylesScripts;
+    /**
+     * Version-specific upgrades.
+     *
+     * @since 160828.48363 VS upgrades.
+     *
+     * @param array $history Install history.
+     */
+    public function onVsUpgrades(array $history)
+    {
+        if (version_compare($history['last_version'], '160827', '<')) {
+            $this->App->Utils->VsUpgrades->fromLt160827();
+        }
+    }
 }

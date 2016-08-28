@@ -42,7 +42,7 @@ class App extends SCoreClasses\App
      *
      * @var string Version.
      */
-    const VERSION = '160731.37612'; //v//
+    const VERSION = '160828.48363'; //v//
 
     /**
      * Constructor.
@@ -83,8 +83,12 @@ class App extends SCoreClasses\App
 
             '§pro_option_keys' => [],
             '§default_options' => [
-                'default_anchors_enable' => '1',
-                'default_toc_enable'     => '0',
+                'default_anchors_enable'            => 1,
+                'default_anchors_adjust_scroll_pos' => 1,
+
+                'default_toc_enable'           => '0',
+                'default_toc_max_heading_size' => 3,
+                'default_toc_min_headings'     => 3,
 
                 'context' => '.entry-content, .hentry, #content',
 
@@ -107,6 +111,18 @@ class App extends SCoreClasses\App
     }
 
     /**
+     * Early hook setup handler.
+     *
+     * @since 160828.48363 Install utilities.
+     */
+    protected function onSetupEarlyHooks()
+    {
+        parent::onSetupEarlyHooks();
+
+        s::addAction('vs_upgrades', [$this->Utils->Installer, 'onVsUpgrades']);
+    }
+
+    /**
      * Other hook setup handler.
      *
      * @since 160724.1960 Initial release.
@@ -119,8 +135,12 @@ class App extends SCoreClasses\App
             add_action('admin_menu', [$this->Utils->MenuPage, 'onAdminMenu']);
             add_action('admin_init', [$this->Utils->PostMetaBox, 'onAdminInit']);
         }
-        add_filter('body_class', [$this->Utils->ScriptsStyles, 'onBodyClass']);
-        add_action('wp_enqueue_scripts', [$this->Utils->ScriptsStyles, 'onWpEnqueueScripts']);
+        add_filter('body_class', [$this->Utils->StylesScripts, 'onBodyClass']);
+        add_action('wp_enqueue_scripts', [$this->Utils->StylesScripts, 'onWpEnqueueScripts']);
+
+        add_action('widgets_init', function () {
+            register_widget(Classes\Widgets\Toc::class);
+        });
         add_shortcode('toc', [$this->Utils->Shortcode, 'onShortcode']);
     }
 }

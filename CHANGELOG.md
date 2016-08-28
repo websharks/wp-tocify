@@ -1,3 +1,17 @@
+## v160828.48363
+
+- New configurable option: 'Auto-Adjust Scroll Position?'.
+- New TOC widget and new TOC display option (via sidebar widget).
+- New option that allows a minimum number of headings to be required for a TOC to be shown.
+- New option that allows for control over the max heading size to be displayed in any given TOC.
+- Slightly reduce the built-in default TOC heading font size so that it consumes less horizontal space.
+- Removing `overflow: hidden` from headings whenever TOC is being displayed. Rely upon margin alone.
+- Remove CSS `outline` from headings that are anchored to avoid a box when it's focused by an anchor.
+- Normalize line-height in TOC to avoid cutting the bottom off of items in the list by mistake.
+- Bumping minimum required WP Sharks Core dependency to v160828.25227.
+- New Facade for developers: `a::isApplicable()`.
+- New filter for developers: `wp_tocify_is_applicable`.
+
 ## v160731.37612
 
 - Enhancing options page.

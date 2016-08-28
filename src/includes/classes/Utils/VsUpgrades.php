@@ -1,12 +1,12 @@
 <?php
 /**
- * Facades.
+ * VS upgrades.
  *
  * @author @jaswsinc
  * @copyright WP Sharks™
  */
 declare (strict_types = 1);
-namespace WebSharks\WpSharks\WpTocify\Classes\Base;
+namespace WebSharks\WpSharks\WpTocify\Classes\Utils;
 
 use WebSharks\WpSharks\WpTocify\Classes;
 use WebSharks\WpSharks\WpTocify\Interfaces;
@@ -29,11 +29,22 @@ use function assert as debug;
 use function get_defined_vars as vars;
 
 /**
- * Pseudo-static facades.
+ * VS upgrades.
  *
- * @since 160718 Initial release.
+ * @since 160828.48363 Initial release.
  */
-abstract class Facades
+class VsUpgrades extends SCoreClasses\SCore\Base\Core
 {
-    use Traits\Facades\StylesScripts;
+    /**
+     * Version-specific upgrade.
+     *
+     * @since 160828.48363 VS upgrade handler.
+     */
+    public function fromLt160827()
+    {
+        // Back compat. Strip leading `-` dashes.
+        $default_toc_enable = s::getOption('default_toc_enable');
+        $default_toc_enable = preg_replace(['/^\-/u', '/\s+\-/u'], ['', ' '], $default_toc_enable);
+        s::updateOptions(compact('default_toc_enable'));
+    }
 }
